@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cstmxgoj7ak3o"]
+
+[ext_resource type="Script" uid="uid://c1q8lyyg5wb62" path="res://Player/player.gd" id="1_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://ci32c35yak8p4" path="res://icon.svg" id="2_btcbx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwnis"]
+size = Vector2(120, 116)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
+radius = 157.20369
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4ntmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_btcbx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gwnis")
+
+[node name="HandPosition" type="Marker2D" parent="."]
+position = Vector2(0, -90)
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_4ntmi")
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
