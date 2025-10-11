@@ -2,16 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://cstmxgoj7ak3o" path="res://Player/player.tscn" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://lhtjynh14jmc" path="res://Enemy/enemy.tscn" id="2_2w1kt"]
-[ext_resource type="PackedScene" uid="uid://yjlw8cw1ine4" path="res://Lanterns/lanterns.tscn" id="3_qvhan"]
+[ext_resource type="PackedScene" uid="uid://dm6rnq7c0yujf" path="res://Spawner/spawner.tscn" id="3_eunhr"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_yh5la")]
-position = Vector2(214, 238)
+position = Vector2(104, 569)
 
-[node name="Enemy" parent="." instance=ExtResource("2_2w1kt")]
-position = Vector2(1082, 90)
-speed = 0.0
-
-[node name="Lanterns" parent="." instance=ExtResource("3_qvhan")]
-position = Vector2(723, 343)
+[node name="Spawner" parent="." instance=ExtResource("3_eunhr")]
+position = Vector2(232, 0)
+enemy_scene = ExtResource("2_2w1kt")
+low = 10.0
+high = 30.0

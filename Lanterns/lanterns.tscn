@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://yjlw8cw1ine4"]
+[gd_scene load_steps=7 format=3 uid="uid://yjlw8cw1ine4"]
 
 [ext_resource type="Script" uid="uid://bs6cfg3j5qltj" path="res://Lanterns/lanterns.gd" id="1_rasik"]
 [ext_resource type="Texture2D" uid="uid://ci32c35yak8p4" path="res://icon.svg" id="2_uglff"]
+[ext_resource type="Script" uid="uid://fcvodmhm7h5u" path="res://Lanterns/damage_area.gd" id="3_uglff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0373"]
 size = Vector2(116, 116)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rasik"]
+radius = 383.04
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uglff"]
+radius = 154.02922
 
 [node name="Lanterns" type="CharacterBody2D"]
 script = ExtResource("1_rasik")
@@ -15,3 +22,20 @@ texture = ExtResource("2_uglff")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j0373")
 debug_color = Color(0.856697, 0.59522086, 0.20078793, 0.41960785)
+
+[node name="DamageArea" type="Area2D" parent="."]
+script = ExtResource("3_uglff")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_rasik")
+debug_color = Color(0.67204356, 0.46274763, 0.5708376, 0.41960785)
+
+[node name="KillArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+shape = SubResource("CircleShape2D_uglff")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
