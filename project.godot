@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Globals="*res://Globals/globals.gd"
 TransitionLayer="*res://TransitionLayer/transition_layer.tscn"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [input]
 
 UP={
