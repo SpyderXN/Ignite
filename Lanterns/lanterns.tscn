@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://yjlw8cw1ine4"]
 
 [ext_resource type="Script" uid="uid://bs6cfg3j5qltj" path="res://Lanterns/lanterns.gd" id="1_rasik"]
-[ext_resource type="Texture2D" uid="uid://ci32c35yak8p4" path="res://icon.svg" id="2_uglff"]
+[ext_resource type="Texture2D" uid="uid://dcu8m8ryk4d8h" path="res://Assets/Spooky.png" id="2_uglff"]
 [ext_resource type="Script" uid="uid://fcvodmhm7h5u" path="res://Lanterns/damage_area.gd" id="3_uglff"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0373"]
