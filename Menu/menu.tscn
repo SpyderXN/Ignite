@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxeh2h36ukpsv"]
+
+[ext_resource type="Script" uid="uid://ryqclv0g03ev" path="res://Menu/menu.gd" id="1_rwxi6"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_rwxi6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -276.0
+offset_top = -169.0
+offset_right = 276.0
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -141
+alignment = 1
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "EXIT"
+flat = true
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "START"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
