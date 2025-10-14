@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddjxyw61o0olt"]
+[gd_scene load_steps=7 format=3 uid="uid://ddjxyw61o0olt"]
 
 [ext_resource type="Script" uid="uid://cfmivow6aia3m" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://lhtjynh14jmc" path="res://Enemy/enemy.tscn" id="2_2w1kt"]
 [ext_resource type="PackedScene" uid="uid://dm6rnq7c0yujf" path="res://Spawner/spawner.tscn" id="3_eunhr"]
 [ext_resource type="PackedScene" uid="uid://cstmxgoj7ak3o" path="res://Player/player.tscn" id="4_eunhr"]
 [ext_resource type="Script" uid="uid://ddc2tpfac3u3v" path="res://Main/ui.gd" id="5_k3v36"]
+[ext_resource type="PackedScene" uid="uid://yjlw8cw1ine4" path="res://Lanterns/lanterns.tscn" id="6_liyct"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yh5la")
@@ -13,16 +14,10 @@ script = ExtResource("1_yh5la")
 wait_time = 5.0
 
 [node name="NightTimer" type="Timer" parent="."]
-wait_time = 5.0
-
-[node name="Spawner" parent="." instance=ExtResource("3_eunhr")]
-position = Vector2(524, 125)
-enemy_scene = ExtResource("2_2w1kt")
-low = 10.0
-high = 30.0
+wait_time = 60.0
 
 [node name="Player" parent="." instance=ExtResource("4_eunhr")]
-position = Vector2(577, 602)
+position = Vector2(914, 632)
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("5_k3v36")
@@ -44,6 +39,32 @@ alignment = 1
 [node name="CountDown" type="Label" parent="UI/Container"]
 layout_mode = 2
 size_flags_horizontal = 4
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(953, 459)
+zoom = Vector2(1.615, 1.615)
+
+[node name="GrpLanterns" type="Node2D" parent="."]
+
+[node name="Lanterns" parent="GrpLanterns" instance=ExtResource("6_liyct")]
+position = Vector2(1049, 564)
+
+[node name="Lanterns2" parent="GrpLanterns" instance=ExtResource("6_liyct")]
+position = Vector2(806, 512)
+
+[node name="Spawner" parent="." instance=ExtResource("3_eunhr")]
+position = Vector2(320, 2)
+enemy_scene = ExtResource("2_2w1kt")
+low = 200.0
+high = 700.0
+
+[node name="Spawner2" parent="." instance=ExtResource("3_eunhr")]
+position = Vector2(1198, 2)
+enemy_scene = ExtResource("2_2w1kt")
+low = 1000.0
+high = 800.0
+
+[node name="GrpSpawners" type="Node2D" parent="."]
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="NightTimer" to="." method="_on_night_timer_timeout"]

@@ -4,8 +4,8 @@ class_name Pickable
 
 @export var impact: float = 0
 var player_near: bool = false
-var shrink_speed = 10
-var min_radius = 5
+@export var shrink_speed = 10
+@export var min_radius = 20
 @onready var collision_shape_2d: CollisionShape2D = $DamageArea/CollisionShape2D
 
 
@@ -19,8 +19,8 @@ func _process(delta: float) -> void:
 	if shape.radius < min_radius:
 		shape.radius = min_radius
 	
-	if player_near and shape.radius < 300:
-		shape.radius += .5
+	if player_near and shape.radius < 100:
+		shape.radius += 1
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:

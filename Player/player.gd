@@ -9,6 +9,8 @@ var is_in_range: bool = false
 var target_object: CharacterBody2D
 var held_object: CharacterBody2D
 @onready var hand_position: Marker2D = $HandPosition
+@onready var idle_sprite: Sprite2D = $IdleSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta: float) -> void:
@@ -20,14 +22,21 @@ func _process(delta: float) -> void:
 	if input_vector.length() > 0:
 		input_vector = input_vector.normalized()
 		velocity = velocity.move_toward(input_vector * speed, accelaration * delta)
+		animation_player.play("Idle")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+		animation_player.stop()
 		
 	Globals.player_pos = global_position
 	move_and_slide()
 	
 	pickup_object()
 	drop_object()
+	
+	
+	if input_vector.x != 0:
+		idle_sprite.flip_h = input_vector.x < 0
+		#hand_position.position.x = -1 if input_vector.x < 0 else 1
 
 
 
@@ -41,7 +50,7 @@ func pickup_object() -> void:
 func drop_object() -> void:
 	if Input.is_action_just_pressed("DROP") and held_object:
 		held_object.reparent(get_parent())
-		held_object.position = position + Vector2.RIGHT * 150
+		held_object.position = position + Vector2.RIGHT * 35
 		held_object = null
 
 func _on_range_body_entered(body: Node2D) -> void:

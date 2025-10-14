@@ -1,30 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://cstmxgoj7ak3o"]
+[gd_scene load_steps=9 format=3 uid="uid://cstmxgoj7ak3o"]
 
 [ext_resource type="Script" uid="uid://c1q8lyyg5wb62" path="res://Player/player.gd" id="1_4ntmi"]
-[ext_resource type="Texture2D" uid="uid://ci32c35yak8p4" path="res://icon.svg" id="2_btcbx"]
+[ext_resource type="Texture2D" uid="uid://dogl1w6kxrdow" path="res://Assets/Player Idle/PlayerIdle.png" id="2_4ntmi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwnis"]
-size = Vector2(120, 116)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
+radius = 12.0
+height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
-radius = 157.20369
+radius = 24.020824
+
+[sub_resource type="Animation" id="Animation_4ntmi"]
+resource_name = "Idle"
+length = 0.80002004
+loop_mode = 2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7449928),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_btcbx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IdleSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gwnis"]
+resource_name = "Run"
+length = 0.50005
+step = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwnis"]
+_data = {
+&"Idle": SubResource("Animation_4ntmi"),
+&"RESET": SubResource("Animation_btcbx"),
+&"Run": SubResource("Animation_gwnis")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4ntmi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_btcbx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_gwnis")
+[node name="IdleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_4ntmi")
+hframes = 2
 
 [node name="HandPosition" type="Marker2D" parent="."]
-position = Vector2(0, -90)
+position = Vector2(18, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_4ntmi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gwnis")
+}
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

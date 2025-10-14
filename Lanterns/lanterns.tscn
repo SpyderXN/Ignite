@@ -4,23 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://dcu8m8ryk4d8h" path="res://Assets/Spooky.png" id="2_uglff"]
 [ext_resource type="Script" uid="uid://fcvodmhm7h5u" path="res://Lanterns/damage_area.gd" id="3_uglff"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j0373"]
-size = Vector2(116, 116)
+[sub_resource type="CircleShape2D" id="CircleShape2D_etwh0"]
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rasik"]
-radius = 383.04
+radius = 100.02
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uglff"]
-radius = 154.02922
+radius = 25.019993
 
 [node name="Lanterns" type="CharacterBody2D"]
 script = ExtResource("1_rasik")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_uglff")
+impact = 20.0
+shrink_speed = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_j0373")
+shape = SubResource("CircleShape2D_etwh0")
 debug_color = Color(0.856697, 0.59522086, 0.20078793, 0.41960785)
 
 [node name="DamageArea" type="Area2D" parent="."]
@@ -35,6 +34,9 @@ debug_color = Color(0.67204356, 0.46274763, 0.5708376, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource("CircleShape2D_uglff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uglff")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

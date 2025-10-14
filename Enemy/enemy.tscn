@@ -1,18 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://lhtjynh14jmc"]
 
-[ext_resource type="Texture2D" uid="uid://ci32c35yak8p4" path="res://icon.svg" id="1_2pb1h"]
 [ext_resource type="Script" uid="uid://c8voe4xdgo08s" path="res://Enemy/enemy.gd" id="1_px1sc"]
+[ext_resource type="Texture2D" uid="uid://bn6a2swyg0l3i" path="res://Assets/Ghost.png" id="2_px1sc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_px1sc"]
-size = Vector2(122, 108)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_am0pq"]
+radius = 6.0
+height = 26.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_px1sc")
-speed = 100.0
+speed = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2pb1h")
+texture = ExtResource("2_px1sc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_px1sc")
+position = Vector2(3, -1)
+shape = SubResource("CapsuleShape2D_am0pq")
 debug_color = Color(0.9080222, 0.40695938, 0.6645509, 0.41960785)

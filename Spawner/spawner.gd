@@ -1,8 +1,8 @@
 extends Node2D
 
 @export var enemy_scene: PackedScene
-@export_range(0, 50, 5) var low: float
-@export_range(0, 50, 5) var high: float
+@export_range(0, 1000, 10) var low: float
+@export_range(0, 1000, 10) var high: float
 var can_spawn = true
 
 func _process(_delta: float) -> void:
