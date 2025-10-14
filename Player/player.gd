@@ -54,12 +54,12 @@ func drop_object() -> void:
 		held_object = null
 
 func _on_range_body_entered(body: Node2D) -> void:
-	if body is Pickable:
+	if body.is_in_group("Pickable"):
 		is_in_range = true
 		target_object = body
 
 
 func _on_range_body_exited(body: Node2D) -> void:
-	if body is Pickable:
+	if body.is_in_group("Pickable"):
 		is_in_range = false
 		target_object = null

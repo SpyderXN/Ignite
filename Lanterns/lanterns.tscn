@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://yjlw8cw1ine4"]
+[gd_scene load_steps=8 format=3 uid="uid://yjlw8cw1ine4"]
 
 [ext_resource type="Script" uid="uid://bs6cfg3j5qltj" path="res://Lanterns/lanterns.gd" id="1_rasik"]
 [ext_resource type="Texture2D" uid="uid://dcu8m8ryk4d8h" path="res://Assets/Spooky.png" id="2_uglff"]
 [ext_resource type="Script" uid="uid://fcvodmhm7h5u" path="res://Lanterns/damage_area.gd" id="3_uglff"]
+[ext_resource type="Texture2D" uid="uid://c2xdleco1kxib" path="res://Assets/128x128/128x128 textures (1).png" id="4_etwh0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_etwh0"]
 radius = 14.0
@@ -13,7 +14,7 @@ radius = 100.02
 [sub_resource type="CircleShape2D" id="CircleShape2D_uglff"]
 radius = 25.019993
 
-[node name="Lanterns" type="CharacterBody2D"]
+[node name="Lanterns" type="CharacterBody2D" groups=["Pickable"]]
 script = ExtResource("1_rasik")
 impact = 20.0
 shrink_speed = 1
@@ -37,6 +38,15 @@ shape = SubResource("CircleShape2D_uglff")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_uglff")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7905913, 0.8702155, 0.07974116, 1)
+energy = 1.4
+range_z_min = -2074
+range_z_max = 2039
+shadow_enabled = true
+texture = ExtResource("4_etwh0")
+texture_scale = 1.97
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

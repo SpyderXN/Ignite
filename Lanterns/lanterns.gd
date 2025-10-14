@@ -6,7 +6,10 @@ class_name Pickable
 var player_near: bool = false
 @export var shrink_speed = 10
 @export var min_radius = 20
+@export var min_light = 1
+@export var light_reduce_speed = .5
 @onready var collision_shape_2d: CollisionShape2D = $DamageArea/CollisionShape2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
 
 
 
@@ -15,12 +18,17 @@ func _process(delta: float) -> void:
 	var shape = collision_shape_2d.shape as CircleShape2D
 	if shape.radius > min_radius and player_near == false:
 		shape.radius -= shrink_speed * delta
+		point_light_2d.energy -= light_reduce_speed * delta
 	
 	if shape.radius < min_radius:
 		shape.radius = min_radius
+		point_light_2d.energy = min_light
 	
 	if player_near and shape.radius < 100:
 		shape.radius += 1
+	
+	if player_near and point_light_2d.energy < 1:
+		point_light_2d.energy = 1.4
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cji62yvj4aubt"]
+
+[ext_resource type="Texture2D" uid="uid://cgchp0lnvl5ja" path="res://Assets/JackO3.png" id="1_lx742"]
+[ext_resource type="Script" uid="uid://dcbi6om5ewymn" path="res://Lantern3/lantern_3.gd" id="1_qebpw"]
+[ext_resource type="Texture2D" uid="uid://c2xdleco1kxib" path="res://Assets/128x128/128x128 textures (1).png" id="3_hqtjt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qebpw"]
+radius = 13.152946
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqtjt"]
+radius = 34.0147
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_larrt"]
+radius = 18.110771
+
+[node name="Lantern3" type="CharacterBody2D" groups=["Pickable"]]
+script = ExtResource("1_qebpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lx742")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_qebpw")
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CircleShape2D_hqtjt")
+debug_color = Color(0.66227484, 0.36805576, 0.89872575, 0.41960785)
+
+[node name="KillArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
+shape = SubResource("CircleShape2D_larrt")
+debug_color = Color(0.665991, 0.49385852, 0.3781337, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7921569, 0.87058824, 0.078431375, 1)
+energy = 1.4
+shadow_enabled = true
+texture = ExtResource("3_hqtjt")
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]
+[connection signal="body_entered" from="KillArea" to="." method="_on_kill_area_body_entered"]
