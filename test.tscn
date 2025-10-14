@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://di3kgvr8hjg3e"]
+[gd_scene load_steps=2 format=3 uid="uid://di3kgvr8hjg3e"]
 
 [ext_resource type="PackedScene" uid="uid://cstmxgoj7ak3o" path="res://Player/player.tscn" id="1_8uh7m"]
-[ext_resource type="PackedScene" uid="uid://yjlw8cw1ine4" path="res://Lanterns/lanterns.tscn" id="2_6uqi0"]
 
 [node name="Test" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_8uh7m")]
-position = Vector2(380, 194)
+position = Vector2(871, 439)
+speed = 200.0
+accelaration = 250.0
+friction = 500.0
 
-[node name="Lanterns" parent="." instance=ExtResource("2_6uqi0")]
-position = Vector2(642, 222)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(953, 459)
+zoom = Vector2(2.155, 2.155)
