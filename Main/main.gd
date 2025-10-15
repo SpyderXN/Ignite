@@ -9,18 +9,20 @@ func _ready() -> void:
 	$NightTimer.stop()
 	start_round()
 	$Spawner.process_mode = Node.PROCESS_MODE_DISABLED
-	
+	$VSpawner.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(_delta: float) -> void:
 	
 	if count_down_finished == true:
 		count_down_finished = false
 		$Spawner.process_mode = Node.PROCESS_MODE_INHERIT
+		$VSpawner.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	if is_night == false:
 		is_night = true
 		print("Night Finished")
 		$Spawner.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		$VSpawner.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
 func start_round():
 	print("Round countdown started")
@@ -43,3 +45,6 @@ func start_night_timer():
 func _on_night_timer_timeout() -> void:
 	is_night = false
 	$NightTimer.stop()
+
+func _on_player_enemy_attacked() -> void:
+	TransitionLayer.load_scene("res://GameOver/game_over.tscn")

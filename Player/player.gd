@@ -12,6 +12,7 @@ var held_object: CharacterBody2D
 @onready var idle_sprite: Sprite2D = $IdleSprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+signal enemy_attacked
 
 func _process(delta: float) -> void:
 	var input_vector = Vector2.ZERO
@@ -32,6 +33,7 @@ func _process(delta: float) -> void:
 	
 	pickup_object()
 	drop_object()
+	
 	
 	
 	if input_vector.x != 0:
@@ -63,3 +65,8 @@ func _on_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Pickable"):
 		is_in_range = false
 		target_object = null
+
+
+func _on_enemy_near_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		emit_signal("enemy_attacked")

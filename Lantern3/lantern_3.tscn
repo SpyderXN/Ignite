@@ -14,6 +14,8 @@ radius = 54.00926
 radius = 18.110771
 
 [node name="Lantern3" type="CharacterBody2D" groups=["Pickable"]]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_qebpw")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -32,6 +34,8 @@ position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_qebpw")
 
 [node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CircleShape2D_hqtjt")
@@ -39,6 +43,8 @@ debug_color = Color(0.66227484, 0.36805576, 0.89872575, 0.41960785)
 
 [node name="KillArea" type="Area2D" parent="."]
 position = Vector2(0, 3)
+collision_layer = 8
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource("CircleShape2D_larrt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cstmxgoj7ak3o"]
+[gd_scene load_steps=11 format=3 uid="uid://cstmxgoj7ak3o"]
 
 [ext_resource type="Script" uid="uid://c1q8lyyg5wb62" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://dogl1w6kxrdow" path="res://Assets/Player Idle/PlayerIdle.png" id="2_4ntmi"]
@@ -56,7 +56,11 @@ _data = {
 &"Run": SubResource("Animation_gwnis")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_btcbx"]
+radius = 16.124516
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 14
 script = ExtResource("1_4ntmi")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -77,6 +81,7 @@ position = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="Range" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
 shape = SubResource("CircleShape2D_4ntmi")
@@ -86,5 +91,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_gwnis")
 }
 
+[node name="EnemyNear" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyNear"]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_btcbx")
+debug_color = Color(0.7141766, 0.47102392, 0.31215748, 0.41960785)
+
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
+[connection signal="body_entered" from="EnemyNear" to="." method="_on_enemy_near_body_entered"]

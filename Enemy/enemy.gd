@@ -7,5 +7,5 @@ class_name Enemy
 func _physics_process(_delta: float) -> void:
 	var direction = (Globals.player_pos - global_position).normalized()
 	velocity = direction * speed
-
 	move_and_slide()
+	

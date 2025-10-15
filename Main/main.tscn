@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ddjxyw61o0olt"]
+[gd_scene load_steps=18 format=4 uid="uid://ddjxyw61o0olt"]
 
 [ext_resource type="Script" uid="uid://cfmivow6aia3m" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="PackedScene" uid="uid://lhtjynh14jmc" path="res://Enemy/enemy.tscn" id="2_2w1kt"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cstmxgoj7ak3o" path="res://Player/player.tscn" id="4_eunhr"]
 [ext_resource type="Script" uid="uid://ddc2tpfac3u3v" path="res://Main/ui.gd" id="5_k3v36"]
 [ext_resource type="PackedScene" uid="uid://yjlw8cw1ine4" path="res://Lanterns/lanterns.tscn" id="6_liyct"]
+[ext_resource type="PackedScene" uid="uid://lik13kh3mh6p" path="res://VSpawner/v_spawner.tscn" id="6_o60nc"]
 [ext_resource type="PackedScene" uid="uid://pqaax7pyb6ol" path="res://Lantern2/lantern_2.tscn" id="8_f6fdm"]
 [ext_resource type="PackedScene" uid="uid://cji62yvj4aubt" path="res://Lantern3/lantern_3.tscn" id="9_rj11h"]
 
@@ -593,6 +594,12 @@ texture = ExtResource("3_qac2q")
 physics_layer_0/collision_layer = 4
 sources/1 = SubResource("TileSetAtlasSource_o60nc")
 
+[sub_resource type="LabelSettings" id="LabelSettings_o60nc"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_f3gf5"]
+font_size = 64
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yh5la")
 
@@ -610,6 +617,11 @@ enemy_scene = ExtResource("2_2w1kt")
 low = 510.0
 high = 830.0
 
+[node name="VSpawner" parent="." instance=ExtResource("6_o60nc")]
+position = Vector2(1536, 0)
+enemy_scene = ExtResource("2_2w1kt")
+high = 750.0
+
 [node name="RoundTimer" type="Timer" parent="."]
 wait_time = 5.0
 
@@ -620,30 +632,38 @@ wait_time = 70.0
 script = ExtResource("5_k3v36")
 
 [node name="Night Time" type="Label" parent="UI"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 56.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 128.0
+label_settings = SubResource("LabelSettings_o60nc")
+metadata/_edit_lock_ = true
 
 [node name="Container" type="BoxContainer" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.27100003
+anchor_top = 0.185
+anchor_right = 0.73300004
+anchor_bottom = 0.64400005
+offset_left = 367.67993
+offset_top = 192.2
+offset_right = -375.3601
+offset_bottom = -151.52008
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="CountDown" type="Label" parent="UI/Container"]
 layout_mode = 2
 size_flags_horizontal = 4
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(953, 459)
-zoom = Vector2(2.155, 2.155)
+label_settings = SubResource("LabelSettings_f3gf5")
 
 [node name="Player" parent="." instance=ExtResource("4_eunhr")]
 position = Vector2(955, 501)
-collision_mask = 4
+collision_mask = 12
 speed = 150.0
 accelaration = 800.0
 friction = 800.0
@@ -661,10 +681,17 @@ light_reduce_speed = 0.07
 [node name="Lantern3" parent="." instance=ExtResource("9_rj11h")]
 position = Vector2(1146, 574)
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(953, 459)
+zoom = Vector2(2.155, 2.155)
+metadata/_edit_lock_ = true
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.56
 blend_mode = 1
 shadow_enabled = true
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="timeout" from="NightTimer" to="." method="_on_night_timer_timeout"]
+[connection signal="enemy_attacked" from="Player" to="." method="_on_player_enemy_attacked"]
