@@ -17,6 +17,12 @@ radius = 14.0
 [node name="Lantern2" type="CharacterBody2D" groups=["Pickable"]]
 script = ExtResource("1_ackmg")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7921569, 0.87058824, 0.078431375, 1)
+energy = 1.4
+shadow_enabled = true
+texture = ExtResource("3_20koo")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_cr7up")
 
@@ -35,12 +41,6 @@ debug_color = Color(0.67950726, 0.47750425, 0.44397017, 0.41960785)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource("CircleShape2D_v5jqw")
 debug_color = Color(0.79310125, 0.3272991, 0.701707, 0.41960785)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.7921569, 0.87058824, 0.078431375, 1)
-energy = 1.4
-shadow_enabled = true
-texture = ExtResource("3_20koo")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

@@ -8,13 +8,21 @@
 radius = 13.152946
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hqtjt"]
-radius = 34.0147
+radius = 54.00926
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_larrt"]
 radius = 18.110771
 
 [node name="Lantern3" type="CharacterBody2D" groups=["Pickable"]]
 script = ExtResource("1_qebpw")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = -1
+position = Vector2(0, 6)
+color = Color(0.7921569, 0.87058824, 0.078431375, 1)
+energy = 1.4
+shadow_enabled = true
+texture = ExtResource("3_hqtjt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lx742")
@@ -30,16 +38,11 @@ shape = SubResource("CircleShape2D_hqtjt")
 debug_color = Color(0.66227484, 0.36805576, 0.89872575, 0.41960785)
 
 [node name="KillArea" type="Area2D" parent="."]
+position = Vector2(0, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource("CircleShape2D_larrt")
 debug_color = Color(0.665991, 0.49385852, 0.3781337, 0.41960785)
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.7921569, 0.87058824, 0.078431375, 1)
-energy = 1.4
-shadow_enabled = true
-texture = ExtResource("3_hqtjt")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

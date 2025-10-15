@@ -6,9 +6,9 @@
 
 [node name="Player" parent="." instance=ExtResource("1_8uh7m")]
 position = Vector2(871, 439)
-speed = 200.0
-accelaration = 250.0
-friction = 500.0
+speed = 150.0
+accelaration = 800.0
+friction = 800.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(953, 459)

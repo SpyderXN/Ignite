@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		shape.radius = min_radius
 		point_light_2d.energy = min_light
 	
-	if player_near and shape.radius < 100:
+	if player_near and shape.radius < 60:
 		shape.radius += 1
 	
 	if player_near and point_light_2d.energy < 1:

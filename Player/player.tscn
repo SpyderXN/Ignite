@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cstmxgoj7ak3o"]
+[gd_scene load_steps=10 format=3 uid="uid://cstmxgoj7ak3o"]
 
 [ext_resource type="Script" uid="uid://c1q8lyyg5wb62" path="res://Player/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://dogl1w6kxrdow" path="res://Assets/Player Idle/PlayerIdle.png" id="2_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://dw5m81oajm6yb" path="res://Assets/128x128/128x128 textures (27).png" id="2_btcbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
-radius = 12.0
-height = 34.0
+radius = 9.0
+height = 26.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ntmi"]
-radius = 24.020824
+radius = 28.01785
 
 [sub_resource type="Animation" id="Animation_4ntmi"]
 resource_name = "Idle"
@@ -58,6 +59,12 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_4ntmi")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1.0999994, 2.9999988)
+scale = Vector2(1.0859375, 1.2499999)
+energy = 0.5
+texture = ExtResource("2_btcbx")
+
 [node name="IdleSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_4ntmi")
 hframes = 2
@@ -66,7 +73,7 @@ hframes = 2
 position = Vector2(18, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="Range" type="Area2D" parent="."]
