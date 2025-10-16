@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdh7b53bb84vp"]
+
+[ext_resource type="Script" uid="uid://cc734goy80fgj" path="res://Winner/winner.gd" id="1_4k0td"]
+[ext_resource type="FontFile" uid="uid://brqthmqeflfhe" path="res://enchanted_land/Enchanted Land.otf" id="1_jwh6g"]
+[ext_resource type="AudioStream" uid="uid://chym2v1gosgwj" path="res://Sounds/Spooky.wav" id="3_fafbf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyh6w"]
+font = ExtResource("1_jwh6g")
+font_size = 150
+font_color = Color(0.5294118, 0.3372549, 0.7647059, 1)
+outline_size = 10
+outline_color = Color(0.4745098, 0.5882353, 0.72156864, 1)
+shadow_size = 25
+shadow_color = Color(0.39607844, 0.39607844, 0.39607844, 0.5294118)
+shadow_offset = Vector2(1, 10)
+
+[node name="Winner" type="CanvasLayer"]
+script = ExtResource("1_4k0td")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -404.0
+offset_right = 712.0
+offset_bottom = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You  won  and  at  last  
+the  reign  of  Count  Gothula
+comes  to  an  end . . ."
+label_settings = SubResource("LabelSettings_dyh6w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = 252.0
+offset_right = 296.0
+offset_bottom = 373.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_jwh6g")
+theme_override_font_sizes/font_size = 96
+text = "Exit  the  Castle"
+flat = true
+
+[node name="WinAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fafbf")
+autoplay = true
+
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]

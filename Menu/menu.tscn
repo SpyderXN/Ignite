@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxeh2h36ukpsv"]
+[gd_scene load_steps=6 format=3 uid="uid://cxeh2h36ukpsv"]
 
 [ext_resource type="Script" uid="uid://ryqclv0g03ev" path="res://Menu/menu.gd" id="1_rwxi6"]
 [ext_resource type="Texture2D" uid="uid://cas6tyysrfmje" path="res://Assets/Background.png" id="2_ihied"]
+[ext_resource type="FontFile" uid="uid://brqthmqeflfhe" path="res://enchanted_land/Enchanted Land.otf" id="3_raj00"]
+[ext_resource type="AudioStream" uid="uid://dn54pfku00tey" path="res://Sounds/Intro.mp3" id="4_8w4re"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_raj00"]
+font = ExtResource("3_raj00")
+font_size = 200
+font_color = Color(0.53013366, 0.33890283, 0.7655037, 1)
+outline_size = 45
+outline_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+shadow_size = 30
+shadow_color = Color(0.015686275, 0.015686275, 0.015686275, 0.5372549)
+shadow_offset = Vector2(1, 25)
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_rwxi6")
@@ -16,31 +28,64 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ihied")
 
+[node name="Label" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -990.0
+offset_top = -426.0
+offset_right = -106.0
+offset_bottom = -191.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Castle  Gothula"
+label_settings = SubResource("LabelSettings_raj00")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -950.0
-offset_top = -300.0
-offset_bottom = 293.0
+offset_left = -1037.0
+offset_top = -311.0
+offset_right = -87.0
+offset_bottom = 282.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_constants/separation = -141
+theme_override_constants/separation = -301
 alignment = 1
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.19215687, 0.11764706, 0.4392157, 1)
+theme_override_colors/font_hover_color = Color(0.07058824, 0.03529412, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("3_raj00")
+theme_override_font_sizes/font_size = 96
 text = "EXIT"
 flat = true
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.19155574, 0.11792997, 0.4375613, 1)
+theme_override_colors/font_hover_color = Color(0.07058824, 0.03529412, 0.20784314, 1)
+theme_override_fonts/font = ExtResource("3_raj00")
+theme_override_font_sizes/font_size = 96
 text = "START"
 flat = true
+
+[node name="BgAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8w4re")
+volume_db = 10.628
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]

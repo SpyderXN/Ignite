@@ -3,6 +3,9 @@ extends Node2D
 var count_down_finished = false
 var is_night = true
 @onready var count_down: Label = $UI/Container/CountDown
+@onready var game_audio: AudioStreamPlayer2D = $GameAudio
+@onready var night_time: Label = $"UI/Night Time"
+
 
 func _ready() -> void:
 	$RoundTimer.stop()
@@ -10,6 +13,8 @@ func _ready() -> void:
 	start_round()
 	$Spawner.process_mode = Node.PROCESS_MODE_DISABLED
 	$VSpawner.process_mode = Node.PROCESS_MODE_DISABLED
+	$VSpawner2.process_mode = Node.PROCESS_MODE_DISABLED
+	night_time.visible = false
 
 func _process(_delta: float) -> void:
 	
@@ -17,12 +22,20 @@ func _process(_delta: float) -> void:
 		count_down_finished = false
 		$Spawner.process_mode = Node.PROCESS_MODE_INHERIT
 		$VSpawner.process_mode = Node.PROCESS_MODE_INHERIT
+		$VSpawner2.process_mode = Node.PROCESS_MODE_INHERIT
+		game_audio.playing = true
+		night_time.visible = true
 	
 	if is_night == false:
 		is_night = true
 		print("Night Finished")
 		$Spawner.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 		$VSpawner.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		$VSpawner2.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		$Player.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		game_audio.playing = false
+		
+		TransitionLayer.load_scene("res://Winner/winner.tscn")
 
 func start_round():
 	print("Round countdown started")

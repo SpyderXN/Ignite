@@ -15,4 +15,4 @@ func count_down_start():
 	count_down.text = str(int(round_timer.time_left))
 
 func show_time():
-	night_time.text = "Night: " + str(int($"../NightTimer".time_left))
+	night_time.text = "Survive Till :  " + str(int($"../NightTimer".time_left))

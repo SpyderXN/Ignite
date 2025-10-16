@@ -19,15 +19,6 @@ collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_ackmg")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-color = Color(0.7921569, 0.87058824, 0.078431375, 1)
-energy = 1.4
-shadow_enabled = true
-texture = ExtResource("3_20koo")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_cr7up")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ackmg")
@@ -47,6 +38,15 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource("CircleShape2D_v5jqw")
 debug_color = Color(0.79310125, 0.3272991, 0.701707, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7921569, 0.87058824, 0.078431375, 1)
+energy = 1.4
+shadow_enabled = true
+texture = ExtResource("3_20koo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cr7up")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_exited" from="DamageArea" to="." method="_on_damage_area_body_exited"]

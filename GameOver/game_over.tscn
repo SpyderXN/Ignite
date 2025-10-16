@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://tutp15dtcup7"]
+[gd_scene load_steps=5 format=3 uid="uid://tutp15dtcup7"]
 
 [ext_resource type="Script" uid="uid://1g6ddahqr7uu" path="res://GameOver/game_over.gd" id="1_g2khx"]
+[ext_resource type="FontFile" uid="uid://brqthmqeflfhe" path="res://enchanted_land/Enchanted Land.otf" id="2_dyh6w"]
+[ext_resource type="AudioStream" uid="uid://f7aooovgmk22" path="res://Sounds/Laugh.wav" id="3_mpypm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dyh6w"]
+font = ExtResource("2_dyh6w")
+font_size = 150
+font_color = Color(0.5294118, 0.3372549, 0.7647059, 1)
+outline_size = 10
+outline_color = Color(0.4745098, 0.5882353, 0.72156864, 1)
+shadow_size = 25
+shadow_color = Color(0.39607844, 0.39607844, 0.39607844, 0.5294118)
+shadow_offset = Vector2(1, 10)
 
 [node name="GameOver" type="CanvasLayer"]
 script = ExtResource("1_g2khx")
@@ -9,10 +21,6 @@ script = ExtResource("1_g2khx")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = -32.0
-offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -23,14 +31,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -512.0
-offset_top = -36.0
-offset_right = -128.0
-offset_bottom = 100.0
+offset_left = -480.0
+offset_top = 92.0
+offset_right = -96.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "Retry"
+theme_override_fonts/font = ExtResource("2_dyh6w")
+theme_override_font_sizes/font_size = 96
+text = "Another round?"
+flat = true
 
 [node name="Exit" type="Button" parent="."]
 anchors_preset = 8
@@ -38,14 +48,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 80.0
-offset_top = -36.0
-offset_right = 464.0
-offset_bottom = 100.0
+offset_left = 112.0
+offset_top = 92.0
+offset_right = 496.0
+offset_bottom = 228.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "Exit"
+theme_override_fonts/font = ExtResource("2_dyh6w")
+theme_override_font_sizes/font_size = 96
+text = "Run from here!"
+flat = true
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -648.0
+offset_top = -434.5
+offset_right = 704.0
+offset_bottom = -77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You  mortals  can't  defeat 
+Count  Gothula ! "
+label_settings = SubResource("LabelSettings_dyh6w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mpypm")
+volume_db = 9.109
+autoplay = true
 
 [connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
