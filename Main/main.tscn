@@ -1225,7 +1225,7 @@ enemy_scene = ExtResource("2_2w1kt")
 high = 750.0
 
 [node name="RoundTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 6.0
 
 [node name="NightTimer" type="Timer" parent="."]
 wait_time = 80.0
@@ -1282,6 +1282,9 @@ light_reduce_speed = 0.07
 
 [node name="Lantern3" parent="." instance=ExtResource("9_rj11h")]
 position = Vector2(1208, 440)
+impact = 30.0
+shrink_speed = 1
+light_reduce_speed = 0.05
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(953, 459)

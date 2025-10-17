@@ -1,13 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxeh2h36ukpsv"]
+[gd_scene load_steps=8 format=3 uid="uid://cxeh2h36ukpsv"]
 
 [ext_resource type="Script" uid="uid://ryqclv0g03ev" path="res://Menu/menu.gd" id="1_rwxi6"]
 [ext_resource type="Texture2D" uid="uid://cas6tyysrfmje" path="res://Assets/Background.png" id="2_ihied"]
+[ext_resource type="Shader" uid="uid://dogfkp8pi5yje" path="res://Assets/rain_and_snow_shader.gdshader" id="2_ofseh"]
 [ext_resource type="FontFile" uid="uid://brqthmqeflfhe" path="res://enchanted_land/Enchanted Land.otf" id="3_raj00"]
 [ext_resource type="AudioStream" uid="uid://dn54pfku00tey" path="res://Sounds/Intro.mp3" id="4_8w4re"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6voe"]
+shader = ExtResource("2_ofseh")
+shader_parameter/rain_amount = 250.0
+shader_parameter/near_rain_length = 0.03600000101148
+shader_parameter/far_rain_length = 0.035000000963979996
+shader_parameter/near_rain_width = 0.16000000434012002
+shader_parameter/far_rain_width = 0.5
+shader_parameter/near_rain_transparency = 0.85100003716262
+shader_parameter/far_rain_transparency = 0.21700000704762
+shader_parameter/rain_color = Color(0.2484003, 0.24840015, 0.24840003, 1)
+shader_parameter/base_rain_speed = 0.94800004177012
+shader_parameter/additional_rain_speed = 0.18000000529012
+shader_parameter/slant = 0.23300005856750006
+
 [sub_resource type="LabelSettings" id="LabelSettings_raj00"]
 font = ExtResource("3_raj00")
-font_size = 200
+font_size = 220
 font_color = Color(0.53013366, 0.33890283, 0.7655037, 1)
 outline_size = 45
 outline_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
@@ -19,6 +34,7 @@ shadow_offset = Vector2(1, 25)
 script = ExtResource("1_rwxi6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_w6voe")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,10 +50,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -990.0
-offset_top = -426.0
-offset_right = -106.0
-offset_bottom = -191.0
+offset_left = -1006.0
+offset_top = -482.0
+offset_right = -44.0
+offset_bottom = -177.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 128
@@ -53,9 +69,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -1037.0
-offset_top = -311.0
+offset_top = -279.0
 offset_right = -87.0
-offset_bottom = 282.0
+offset_bottom = 314.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = -301
@@ -68,7 +84,7 @@ theme_override_colors/font_color = Color(0.19215687, 0.11764706, 0.4392157, 1)
 theme_override_colors/font_hover_color = Color(0.07058824, 0.03529412, 0.20784314, 1)
 theme_override_fonts/font = ExtResource("3_raj00")
 theme_override_font_sizes/font_size = 96
-text = "EXIT"
+text = "Run from here!"
 flat = true
 
 [node name="Start" type="Button" parent="VBoxContainer"]
@@ -76,9 +92,10 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.19155574, 0.11792997, 0.4375613, 1)
 theme_override_colors/font_hover_color = Color(0.07058824, 0.03529412, 0.20784314, 1)
+theme_override_colors/font_outline_color = Color(0.8901805, 0.27137023, 0.21375662, 1)
 theme_override_fonts/font = ExtResource("3_raj00")
 theme_override_font_sizes/font_size = 96
-text = "START"
+text = "Enter the Castle?"
 flat = true
 
 [node name="BgAudio" type="AudioStreamPlayer2D" parent="."]
