@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Ignite"
-run/main_scene="uid://ddjxyw61o0olt"
+config/name="Castle Gothula"
+config/description="Survive Count Gothula’s haunted castle by igniting fading lanterns before darkness consumes you."
+config/version="1.0"
+run/main_scene="uid://cxeh2h36ukpsv"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.3876231, 0.14182374, 0.4529329, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://d27jdu60h38xp"
+config/icon="uid://dcu8m8ryk4d8h"
 
 [autoload]
 
@@ -25,6 +30,7 @@ TransitionLayer="*res://TransitionLayer/transition_layer.tscn"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=3
+window/stretch/aspect="expand"
 
 [global_group]
 
